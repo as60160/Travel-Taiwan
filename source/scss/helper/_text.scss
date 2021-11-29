@@ -1,0 +1,63 @@
+// font-weight
+@each $name in $fw-title {
+  .fw-#{$name} {
+    font-weight: map-get($fw-size, $name);
+  }
+}
+
+// font-size
+@each $size in $fs-title {
+  .fs-#{$size} {
+    font-size: map-get($fs-size, $size);
+  }
+}
+
+@include phone {
+  @each $size in $fs-title {
+    .fs-sm-#{$size} {
+      font-size: map-get($fs-size, $size);
+    }
+  }
+}
+
+// color
+@each $name in $theme-title {
+  .text-#{$name} {
+    color: map-get($theme-colors, $name);
+  }
+}
+
+
+// others
+.text-center {
+  text-align: center;
+}
+
+.text-shadow {
+  text-shadow: 10px 8px 12px rgba(0, 0, 0, 0.37);
+}
+
+.title-white {
+  color: $white;
+  font-style: italic;
+  font-size: $fs-base*3;
+  @include phone {
+    font-size: $fs-base*1.625;
+  }
+}
+
+.title-white-md {
+  color: $white;
+  font-style: italic;
+  font-size: $fs-base*2;
+  @include phone {
+    font-size: $fs-base*1.25;
+  }
+}
+
+.title-primary {
+  color: $primary;
+  font-weight: 700;
+  font-size: 30px;
+}
+

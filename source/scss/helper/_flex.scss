@@ -1,0 +1,40 @@
+.flex-row {
+flex-direction: row;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+} 
+
+.flex-column {
+  flex-direction: column;
+} 
+
+.flex-wrap {
+  flex-wrap: wrap;
+} 
+
+.justify-content-center {
+  justify-content: center;
+} 
+
+.justify-content-end {
+  justify-content: flex-end;
+} 
+
+.justify-content-between {
+  justify-content: space-between;
+} 
+
+.align-items-center {
+  align-items: center;
+}
+
+@include phone {
+  .d-sm-flex {
+    display: flex;
+  }
+  .flex-sm-column {
+    flex-direction: column;
+  }
+}

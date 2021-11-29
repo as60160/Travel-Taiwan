@@ -1,0 +1,125 @@
+@each $direction in $direction-list {
+  @each $size in $spacer-list {
+    .m#{$direction}-#{$size} {
+      margin-#{map-get($direction-map, $direction)}: map-get($spacer-map, $size);
+    }
+  }
+}
+
+@each $size in $spacer-list {
+  .mx-#{$size} {
+    margin-left: map-get($spacer-map, $size);
+    margin-right: map-get($spacer-map, $size);
+  }
+  .my-#{$size} {
+    margin-top: map-get($spacer-map, $size);
+    margin-bottom: map-get($spacer-map, $size);
+  }
+}
+
+@each $direction in $direction-list {
+  @each $size in $spacer-list {
+    .p#{$direction}-#{$size} {
+      padding-#{map-get($direction-map, $direction)}: map-get($spacer-map, $size);
+    }
+  }
+}
+
+@each $size in $spacer-list {
+  .px-#{$size} {
+    padding-left: map-get($spacer-map, $size);
+    padding-right: map-get($spacer-map, $size);
+  }
+  .py-#{$size} {
+    padding-top: map-get($spacer-map, $size);
+    padding-bottom: map-get($spacer-map, $size);
+  }
+}
+
+// pad
+@include pad {
+  @each $direction in $direction-list {
+    @each $size in $spacer-list {
+      .m#{$direction}-md-#{$size} {
+        margin-#{map-get($direction-map, $direction)}: map-get($spacer-map, $size);
+      }
+    }
+  }
+
+  @each $size in $spacer-list {
+    .mx-md-#{$size} {
+      margin-left: map-get($spacer-map, $size);
+      margin-right: map-get($spacer-map, $size);
+    }
+
+    .my-md-#{$size} {
+      margin-top: map-get($spacer-map, $size);
+      margin-bottom: map-get($spacer-map, $size);
+    }
+  }
+
+  @each $direction in $direction-list {
+    @each $size in $spacer-list {
+      .p#{$direction}-md-#{$size} {
+        padding-#{map-get($direction-map, $direction)}: map-get($spacer-map, $size);
+      }
+    }
+  }
+
+  @each $size in $spacer-list {
+    .px-md-#{$size} {
+      padding-left: map-get($spacer-map, $size);
+      padding-right: map-get($spacer-map, $size);
+    }
+
+    .py-md-#{$size} {
+      padding-top: map-get($spacer-map, $size);
+      padding-bottom: map-get($spacer-map, $size);
+    }
+  }
+}
+
+
+// phone
+@include phone {
+  @each $direction in $direction-list {
+    @each $size in $spacer-list {
+      .m#{$direction}-sm-#{$size} {
+        margin-#{map-get($direction-map, $direction)}: map-get($spacer-map, $size);
+      }
+    }
+  }
+
+  @each $size in $spacer-list {
+    .mx-sm-#{$size} {
+      margin-left: map-get($spacer-map, $size);
+      margin-right: map-get($spacer-map, $size);
+    }
+
+    .my-sm-#{$size} {
+      margin-top: map-get($spacer-map, $size);
+      margin-bottom: map-get($spacer-map, $size);
+    }
+  }
+
+  @each $direction in $direction-list {
+    @each $size in $spacer-list {
+      .p#{$direction}-sm-#{$size} {
+        padding-#{map-get($direction-map, $direction)}: map-get($spacer-map, $size);
+      }
+    }
+  }
+
+  @each $size in $spacer-list {
+    .px-sm-#{$size} {
+      padding-left: map-get($spacer-map, $size);
+      padding-right: map-get($spacer-map, $size);
+    }
+
+    .py-sm-#{$size} {
+      padding-top: map-get($spacer-map, $size);
+      padding-bottom: map-get($spacer-map, $size);
+    }
+  }
+}
+

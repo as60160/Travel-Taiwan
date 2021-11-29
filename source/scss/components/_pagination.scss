@@ -1,0 +1,28 @@
+#pagination {
+  display: flex;
+  justify-content: center;
+
+  li a{
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 22px;
+    text-align: center;
+    transition: .2s;
+    @include phone {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 16px;
+    }
+  }
+  
+  li a.active {
+    color: $white;
+    background: $primary;
+  }
+
+  li a:hover:not(.active){
+    background: $lightgray;
+  }
+}

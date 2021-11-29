@@ -1,0 +1,96 @@
+#modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scale(0);
+  transition: .3s;
+  z-index: 5;
+
+  overflow-y: auto;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+
+  &.active {
+    transform: scale(1);
+  }
+}
+
+.modal__content {
+  background: $white;
+  border-radius: $radius;
+  padding: $spacer*1.5 $spacer*2.75;
+  margin: $spacer*4 auto;
+
+  h2 {
+    font-weight: 900;
+    font-size: 20px;
+    color: #393939;
+  }
+
+  .icon {
+    display: inline-block;
+    margin-right: $spacer*0.5;
+  }
+} 
+
+.modal__header {
+  text-align: right;
+}
+
+.modal__footer {
+  padding-bottom: $spacer*4.75;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+      margin-right: $spacer*2.375;
+    }
+    @include pad {
+      margin-bottom: $spacer;
+    }
+  }
+}
+
+#modal #closeBtn {
+  width: $spacer*2;
+  height: $spacer*2;
+  background: $lightgray;
+  border: none;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: .2s;
+
+  &:hover {
+    background: darken($lightgray, 20%);
+  }
+
+  &::before, &::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: $white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}

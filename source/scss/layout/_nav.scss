@@ -1,0 +1,56 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include phone {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.nav__logo, .nav__list {
+  display: flex;
+  padding-top: $spacer*1.25;
+  padding-bottom: $spacer*1.25;
+}
+
+.nav__logo {
+  align-items: center;
+}
+
+.nav__list {
+  color: $darkgray;
+  font-size: $fs-base*1.25;
+  @include phone {
+    font-size: $fs-base;
+    justify-content: space-between;
+  }
+}
+
+.nav__img {
+  width: 40px;
+}
+
+.nav__title {
+  color: $primary;
+  font-size: $fs-base*1.875;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.nav__item {
+  margin-left: $spacer*3.5;
+  @include pad {
+    margin-left: $spacer*2;
+  }
+  @include phone {
+    margin-left: 0;
+  }
+}
+
+.nav__item.active {
+  color: $primary;
+}
+
+

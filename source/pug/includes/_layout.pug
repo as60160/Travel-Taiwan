@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+  head
+    include _head.pug 
+  body 
+    include _nav.pug
+    include _banner.pug
+    include _card-list.pug
+    block activities 
+    block pagination 
+    block backToTop 
+      a#backToTopBtn(href="#") 
+        img(src="img/arrow-top.svg", alt="Back to top")
+    block footer 
+    include _footer.pug
+    include _modal.pug
+    include _script.pug

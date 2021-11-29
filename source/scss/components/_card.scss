@@ -1,0 +1,83 @@
+// structure
+.card {
+  font-weight: 500;
+  font-size: $fs-base * 0.875;
+  display: flex;
+  flex-direction: column;
+  background: $white;
+  border-radius: $radius;
+  box-shadow: 2px 2px 4px rgba(114, 142, 171, 0.1),
+  -6px -6px 20px rgba(255, 255, 255, 0.6),
+  4px 4px 20px rgba(111, 140, 176, 0.41);
+  user-select: none;
+  transition: all .2s ease;
+
+  h3 {
+    color: $darkgray;
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.card__head {
+  height: 11.5rem;
+  border-radius: $radius $radius 0 0;
+  overflow: hidden;
+}
+
+.card__body {
+  padding: 0rem 1.25rem;
+}
+
+.card__footer {
+  text-align: center;
+}
+
+.cardView {
+  height: 20.5rem;
+  border-radius: $radius;
+  overflow: hidden;
+}
+
+.card__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: 0.2s;
+  transform: scale(1.1);
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+}
+
+// icon
+.card .icon {
+  display: inline-block;
+}
+
+.card .icon-sm {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+// button
+.card__btn {
+  border: 4px solid $primary;
+  border-radius: $radius;
+  padding: 0.5rem 3.875rem;
+  transition: .2s;
+
+  &:hover {
+    background: $primary;
+    color: $white;
+  }
+}
+

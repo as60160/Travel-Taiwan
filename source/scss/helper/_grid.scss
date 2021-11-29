@@ -1,0 +1,37 @@
+.col {
+  flex: 1 0 0%;
+}
+
+@each $num in $col-list {
+  .col-#{$num} {
+    flex: 0 0 auto;
+    width: map-get($col-width, $num);
+  }
+}
+
+@include pc {
+  @each $num in $col-list {
+    .col-lg-#{$num} {
+      flex: 0 0 auto;
+      width: map-get($col-width, $num);
+    }
+  }
+}
+
+@include pad {
+  @each $num in $col-list {
+    .col-md-#{$num} {
+      flex: 0 0 auto;
+      width: map-get($col-width, $num);
+    }
+  }
+}
+
+@include phone {
+  @each $num in $col-list {
+    .col-sm-#{$num} {
+      flex: 0 0 auto;
+      width: map-get($col-width, $num);
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.select, option {
+  font-weight: 400;
+  font-size: $fs-base;
+  border-radius: $radius;
+  box-shadow: 4px 4px 11px 0px #00000040;
+  @include phone{
+    font-size: $fs-base*0.875;
+  }
+}
+
+.select-sm {
+  padding: $spacer $spacer*4;
+  @include phone {
+    padding: $spacer*0.75 $spacer*1.25;
+  }
+}
+
+.select-lg {
+  padding: $spacer $spacer*7;
+  @include phone {
+    padding: $spacer*0.75 $spacer*3.25;
+  }
+}

@@ -1,0 +1,52 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+body {
+  color: $secondary;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+select, option {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.container-fluid {
+  width: 100%;
+}
+
+.container {
+  max-width: map-get($width-size, "lg");
+  margin: 0 auto;
+  padding: 0 $spacer;
+  @include pad {
+    max-width: map-get($width-size, "md");
+  }
+  @include phone {
+    max-width: map-get($width-size, "sm");
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}

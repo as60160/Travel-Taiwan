@@ -1,0 +1,35 @@
+.bg {
+  background-position: center center;
+  background-size: cover;
+}
+
+
+// with color
+.bg-primary {
+  background: $primary;
+}
+
+.bg-white {
+  background: $white;
+}
+
+.bg-overlay {
+  background: rgba(38, 38, 38, 0.46);
+}
+
+// with img
+.bg-index {
+  background-image: url("../img/index.png");
+}
+
+.bg-footer{
+  background-image: url("../img/footer.png");
+}
+
+.bg-activities {
+  background-image: url("../img/activities.png");
+}
+
+.bg-attractions {
+  background-image: url("../img/attractions.png");
+}

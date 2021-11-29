@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel Taiwan </title>
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="icon" href="img/logo.svg">
+  </head>
+  <body> 
+    <nav class="container nav"><a class="nav__logo" href="index.html"><img class="nav__img mr-3" src="img/logo.svg" alt="logo">
+        <h1 class="nav__title">Travel Taiwan</h1></a>
+      <ul class="nav__list col-sm-12 px-1">
+        <li class="nav__item" data-path="index"><a class="nav__link" href="index.html"><span class="hover__underline-primary">首頁</span></a></li>
+        <li class="nav__item" data-path="attractions"><a class="nav__link" href="attractions.html"><span class="hover__underline-primary">景點導覽</span></a></li>
+        <li class="nav__item" data-path="activities"><a class="nav__link" href="activities.html"><span class="hover__underline-primary">觀光活動</span></a></li>
+      </ul>
+    </nav>
+    <div class="container-fluid bg text-center vh-93" id="banner">
+      <div class="row flex-column justify-content-center align-items-center h-100">
+        <p class="title-white text-shadow mb-4">Welcome to Travel Taiwan</p>
+        <div class="row d-flex justify-content-center align-items-center"> 
+          <select class="select select-sm mr-3 mr-sm-1" id="type" name="type"> 
+            <option value="null">類別</option>
+          </select>
+          <select class="select select-lg mr-3 mr-sm-1" id="city" name="city"> 
+            <option value="null">所有縣市</option>
+          </select><a id="searchBtn" href="#"><img src="img/search.svg" alt="search"></a>
+        </div>
+      </div>
+    </div>
+    <section class="container mt-md-4 mt-14" id="cardList"></section>
+    <section class="container mt-6 mt-md-4 mb-14 mb-md-13">
+      <div class="info pl-1"> 
+        <h2 class="title-primary mb-4">活動類別</h2>
+        <p>各種不同的活動內容</p>
+        <p class="mb-8">邀請您一同來共襄盛舉！</p>
+      </div>
+      <ul class="d-flex flex-wrap"> 
+            <li class="col-3 col-md-6 col-sm-12 mb-3 px-1"><a class="cardView mb-4 mb-md-3" href="activities.html" data-type="年度活動"><img class="card__img" src="img/activity-01.jpg" alt=""></a>
+              <p class="text-center text-black fs-3">年度活動</p>
+            </li>
+            <li class="col-3 col-md-6 col-sm-12 mb-3 px-1"><a class="cardView mb-4 mb-md-3" href="activities.html" data-type="藝文活動"><img class="card__img" src="img/activity-02.jpg" alt=""></a>
+              <p class="text-center text-black fs-3">藝文活動</p>
+            </li>
+            <li class="col-3 col-md-6 col-sm-12 mb-3 px-1"><a class="cardView mb-4 mb-md-3" href="activities.html" data-type="節慶活動"><img class="card__img" src="img/activity-03.jpg" alt=""></a>
+              <p class="text-center text-black fs-3">節慶活動</p>
+            </li>
+            <li class="col-3 col-md-6 col-sm-12 mb-3 px-1"><a class="cardView mb-4 mb-md-3" href="activities.html" data-type="其他"><img class="card__img" src="img/activity-04.jpg" alt=""></a>
+              <p class="text-center text-black fs-3">其他</p>
+            </li>
+      </ul>
+    </section><a id="backToTopBtn" href="#"> <img src="img/arrow-top.svg" alt="Back to top"></a>
+    <div class="container-fluid bg bg-footer text-center py-14">
+      <p class="title-white-md text-shadow"> “To travel is to live” </p>
+      <p class="title-white-md text-shadow">– Hans Christian Anderson-</p>
+    </div>
+    <footer class="container-fluid bg bg-primary text-center py-8">
+      <p class="text-white fs-4 fs-sm-5 mb-1 d-sm-flex flex-sm-column"><span class="mr-3">CopyRight : Travel Taiwan</span><span>Design By : <a class="mr-3" href="https://2021.thef2e.com/users/6296427084285739806?week=1&amp;type=1" target="_black">Tracy</a></span><span>Code By : <a href="https://2021.thef2e.com/users/6296427084285739736" target="_black">Jane Lin</a></span></p>
+      <p class="text-white fs-4 fs-sm-5 d-flex justify-content-center align-items-center"> <span>資料來源：</span><a class="mr-3" href="https://tdx.transportdata.tw/api-service/swagger" target="_blank">交通部PTX平臺</a><img class="d-inline-block bg-white col-1" src="img/ptx-logo.png" alt="PTX logo"></p>
+    </footer>
+    <div class="container-fluid bg-overlay" id="modal"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.1/axios.js" integrity="sha512-Kg0CewqPNO/ziOJuCq5eyl3P/V6OLz/Lb1I2m+yKS3lHZcGVFN/KOew18rWP+kTsL7haYdaqGjwHQCZrN0heLQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"> </script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

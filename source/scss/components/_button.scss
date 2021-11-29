@@ -1,0 +1,33 @@
+#searchBtn {
+  @include phone {
+    width: 37px;
+  }
+}
+
+#backToTopBtn {
+  width: $spacer*2.875;
+  height: $spacer*2.875;
+  background: $primary;
+  border-radius: 50%;
+  color: $white;
+  position: fixed;
+  right: 5vw;
+  bottom: 20vh;
+  z-index: 5;
+  opacity: 0.5;
+  display: none;
+  transition: 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  img {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
