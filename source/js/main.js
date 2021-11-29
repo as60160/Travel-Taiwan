@@ -87,7 +87,7 @@ function searchData() {
   if (currentPath.includes("/index.html")) {
     sessionStorage.setItem("type", selectedType)
     sessionStorage.setItem("city", selectedCity)
-    location.pathname = `/attractions.html`
+    location.pathname = `/Travel-Taiwan/public/attractions.html`
   }
   if (currentPath.includes("/activities.html")) {
     getActivityData()
@@ -124,7 +124,7 @@ function topFunction() {
 function getCityData() {
   axios({
     method: "get",
-    url: "../assets/city-name.json",
+    url: "assets/city-name.json",
     Headers: GetAuthorizationHeader()
   }).then(res => {
     allCityData = res.data.data
