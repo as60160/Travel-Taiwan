@@ -16,6 +16,7 @@ let currentPath = "index"
 let startNum = 0
 let stepNum = 12
 let selectedPage = 1
+let totalPages = 1
 
 const typeSelect = document.getElementById("type")
 const citySelect = document.getElementById("city")
@@ -349,7 +350,7 @@ function renderData(data) {
 
 // 渲染分頁
 function renderPagination(totalNum) {
-  const totalPages = Math.ceil(totalNum / stepNum)
+  totalPages = Math.ceil(totalNum / stepNum)
   const maxPage = 5
   let str = `<li><a href="#" data-minus="1">&lt;</a></li>`
 
@@ -379,12 +380,13 @@ function renderPagination(totalNum) {
   pagination.innerHTML = str
   document.querySelector(`[data-num='${selectedPage}']`).classList.add("active")
 
-  pagination.addEventListener("click", (e) => {
-    console.log("點擊分頁")
-    e.preventDefault()
-    changeSelectedPage(e, totalPages)
-  })
 }
+
+pagination.addEventListener("click", (e) => {
+  console.log("點擊分頁")
+  e.preventDefault()
+  changeSelectedPage(e, totalPages)
+})
 
 // 改變分頁
 function changeSelectedPage(e, totalPages) {
