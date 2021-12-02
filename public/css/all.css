@@ -3000,6 +3000,10 @@ select, option {
   line-height: 55px;
   font-size: 22px;
   text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   -webkit-transition: .2s;
   -o-transition: .2s;
   transition: .2s;
@@ -3007,9 +3011,9 @@ select, option {
 
 @media screen and (max-width: 576px) {
   #pagination li a {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
     font-size: 16px;
   }
 }

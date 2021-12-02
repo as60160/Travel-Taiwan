@@ -86,14 +86,14 @@ function changeBannerPicture(path) {
 // 搜尋資料
 function searchData() {
   if (currentPath.includes("/index.html")) {
-    sessionStorage.setItem("type", selectedType)
-    sessionStorage.setItem("city", selectedCity)
+    localStorage.setItem("type", selectedType)
+    localStorage.setItem("city", selectedCity)
     location.pathname = `/Travel-Taiwan/public/attractions.html`
   }
   if (currentPath.includes("/activities.html")) {
-    getActivityData()
+    filterData(activityData)
   } else {
-    getAttractionSpot()
+    filterData(attractionData)
   }
 }
 
@@ -103,9 +103,9 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-    backToTopBtn.style.display = "block";
+    backToTopBtn.style.display = "block"
   } else {
-    backToTopBtn.style.display = "none";
+    backToTopBtn.style.display = "none"
   }
 }
 
@@ -212,6 +212,7 @@ function processingData(data) {
       } else {
         obj.time = item.OpenTime
       }
+
       attractionData.push(obj)
     }
 
@@ -227,10 +228,10 @@ function processingData(data) {
 
 // 篩選處理過的資料
 function filterData(data) {
-  if (sessionStorage.getItem("type") && sessionStorage.getItem("city")) {
-    selectedType = sessionStorage.getItem("type")
-    selectedCity = sessionStorage.getItem("city")
-    sessionStorage.clear()
+  if (localStorage.getItem("type") && localStorage.getItem("city")) {
+    selectedType = localStorage.getItem("type")
+    selectedCity = localStorage.getItem("city")
+    localStorage.clear()
   }
   
   let filterData = []
@@ -337,7 +338,7 @@ function renderData(data) {
     <ul class="d-flex flex-wrap"> ${str} </ul>
   `
 
-  if(data.length > 0 && pagination) renderPagination(data.length)
+  if(pagination) renderPagination(data.length)
 
   const openModalButtons = document.querySelectorAll("[data-modal-target]")
   openModalButtons.forEach(btn => {
@@ -350,6 +351,12 @@ function renderData(data) {
 
 // 渲染分頁
 function renderPagination(totalNum) {
+  if (!totalNum) {
+    pagination.style.display = "none"
+  } else {
+    pagination.style.display = "flex"
+  }
+
   totalPages = Math.ceil(totalNum / stepNum)
   const maxPage = 5
   let str = `<li><a href="#" data-minus="1">&lt;</a></li>`
@@ -383,15 +390,13 @@ function renderPagination(totalNum) {
 }
 
 pagination.addEventListener("click", (e) => {
-  console.log("點擊分頁")
   e.preventDefault()
-  changeSelectedPage(e, totalPages)
+  changeSelectedPage(e)
 })
 
 // 改變分頁
-function changeSelectedPage(e, totalPages) {
+function changeSelectedPage(e) {
   if (e.target.nodeName != "A") return
-  if (selectedPage == totalPages) return
   
   const num = Number(e.target.dataset.num)
   const addNum = Number(e.target.dataset.add)
@@ -429,7 +434,7 @@ function openModal(e, data) {
 
   modal.classList.add("active")
   modal.innerHTML = `
-    <div class="modal__content col-6 col-md-10">
+    <div class="modal__content col-6 col-lg-8 col-md-10">
       <div class="modal__header">
         <a id="closeBtn" href="#" data-close-button> </a>
       </div>
@@ -444,19 +449,19 @@ function openModal(e, data) {
       </div>
       <div class="modal__footer">
         <ul class="text-primary d-flex">
-          <li>
+          <li class="mb-1">
             <img class="icon" src="img/clock.svg" alt="">
             <span>${currentItem.time}</span>
           </li>
-          <li>
+          <li class="mb-1">
             <img class="icon" src="img/ticket.svg" alt="">
             <span>${currentItem.ticketInfo}</span>
           </li>
-          <li>
+          <li class="mb-1">
             <img class="icon" src="img/phone.svg" alt="">
             <span>${currentItem.phone}</span>
           </li>
-          <li>
+          <li class="mb-1">
             <img class="icon" src="img/list.svg" alt="">
             <span>${currentItem.class}</span>
           </li>
