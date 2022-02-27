@@ -12,7 +12,7 @@ let attractionData = []
 let activityData = []
 let selectedType = "all"
 let selectedCity = "all"
-let currentPath = "index"
+let currentPage = "index"
 let startNum = 0
 let stepNum = 12
 let selectedPage = 1
@@ -48,33 +48,26 @@ function init() {
 // event
 // 偵測所在頁面路徑
 function detectPath() {
-  currentPath = location.pathname
-  document.querySelector("[data-path]").classList.remove("active")
-  if (currentPath.includes("/index.html")) {
-    changeNavClass("index")
-    changeBannerPicture("index")
-    renderTypes(type.attraction)
-    getAttractionSpot()
-    getActivityData()
-    searchBtn.href = "attractions.html"
+  const checkPage = path => {
+    if (path.includes("/index.html")) return "index"
+    if (path.includes("/attractions.html")) return "attractions"
+    if (path.includes("/activities.html")) return "activities"
   }
-  if (currentPath.includes("/attractions.html")) {
-    changeNavClass("attractions")
-    changeBannerPicture("attractions")
-    renderTypes(type.attraction)
-    getAttractionSpot()
-    searchBtn.href = "attractions.html"
-  } else if (currentPath.includes("/activities.html")) {
-    changeNavClass("activities")
-    changeBannerPicture("activities")
-    renderTypes(type.activity)
-    getActivityData()
-    searchBtn.href = "activities.html"
-  }
+  currentPage = checkPage(location.pathname)
+  createPage(currentPage)
+}
+
+function createPage(page) {
+  changeNavClass(page)
+  changeBannerPicture(page)
+  page == "activities"? renderTypes(type.activity) : renderTypes(type.attraction)
+  page == "activities"? getActivityData() : getAttractionSpot()
+  searchBtn.href = page == "activities"? "activities.html" : "attractions.html"
 }
 
 // 改變導覽列 class
 function changeNavClass(path) {
+  document.querySelector("[data-path]").classList.remove("active")
   document.querySelector(`[data-path=${path}]`).classList.add("active")
 }
 
@@ -85,12 +78,12 @@ function changeBannerPicture(path) {
 
 // 搜尋資料
 function searchData() {
-  if (currentPath.includes("/index.html")) {
+  if (currentPage == "index") {
     localStorage.setItem("type", selectedType)
     localStorage.setItem("city", selectedCity)
     location.pathname = `/Travel-Taiwan/public/attractions.html`
   }
-  if (currentPath.includes("/activities.html")) {
+  if (currentPage == "activities") {
     filterData(activityData)
   } else {
     filterData(attractionData)
@@ -140,7 +133,7 @@ function getCityData() {
 function getAttractionSpot() {
   axios({
     method: "get",
-    url: "https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$format=JSON",
+    url: "https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24format=JSON",
     Headers: GetAuthorizationHeader()
   }).then(res => {
     res.data.forEach(item => {
@@ -159,13 +152,13 @@ function getAttractionSpot() {
 function getActivityData() {
   axios({
     method: "get",
-    url: "https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity?$format=JSON",
+    url: "https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity?%24format=JSON",
     Headers: GetAuthorizationHeader()
   }).then(res => {
     res.data.forEach(item => {
       if (!item.Class1 && !item.Class2) return
       if (!item.Address) return
-      if (item.Name.includes("取消")) return
+      if (item.ActivityName.includes("取消")) return
       allActivityData.push(item)
     })
     // console.log("活動", allActivityData)
@@ -179,6 +172,7 @@ function getActivityData() {
 // processing data
 // 將取得的資料整理後放到新陣列
 function processingData(data) {
+  // console.log(data)
   attractionData = []
   activityData = []
 
@@ -186,8 +180,8 @@ function processingData(data) {
     const noData = "無提供資料"
     const obj = {}
 
-    obj.id = item.ID
-    obj.name = item.Name
+    obj.id = item.ScenicSpotID || item.ActivityID
+    obj.name = item.ScenicSpotName || item.ActivityName
     obj.address = item.Address
     obj.description = (!item.Description) ? noData : item.Description
     obj.ticketInfo = (!item.TicketInfo) ? noData : item.TicketInfo
@@ -280,14 +274,14 @@ function renderCityName(cityData) {
 
 // 渲染資料
 function renderData(data) {
-  if (currentPath.includes("/index.html")) {
+  if (currentPage == "index") {
     startNum = Math.floor(Math.random() * data.length - stepNum) 
   }
 
   let endNum = startNum + stepNum
   let str = ""
 
-  if (data.length == 0) {
+  if (!data.length) {
     str += `
       <li class="text-center mb-12 mb-md-8 px-1">
         <p>抱歉，搜尋不到您想要的資料  ಥ⌣ಥ</p>
@@ -328,7 +322,7 @@ function renderData(data) {
   }
 
   const city = (selectedCity == "all") ? "熱門" : selectedCity
-  const category = (currentPath.includes("/attractions.html")) ? "景點" : "活動"
+  const category = (currentPage == "attractions") ? "景點" : "活動"
   cardList.innerHTML = `
     <div class="info pl-1"> 
       <h2 class="title-primary mb-4">${city}${category}</h2>
@@ -412,7 +406,7 @@ function changeSelectedPage(e) {
 
   startNum = (selectedPage - 1) * stepNum
 
-  if (currentPath.includes("/attractions.html")) {
+  if (currentPage == "attractions") {
     filterData(attractionData)
   } else {
     filterData(activityData)
