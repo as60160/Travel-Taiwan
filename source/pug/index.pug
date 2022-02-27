@@ -3,8 +3,8 @@ extends includes/_layout.pug
 block activities 
   mixin card-view(img, title)
     li.col-3.col-md-6.col-sm-12.mb-3.px-1
-      a.cardView.mb-4.mb-md-3(href="activities.html" data-type=title)
-        img.card__img(src=img, alt="")
+      a.cardView.mb-4.mb-md-3(href="activities.html")
+        img.card__img(src=img, alt=title data-type=title)
       p.text-center.text-black.fs-3=title
 
   section.container.mt-6.mt-md-4.mb-14.mb-md-13
@@ -12,7 +12,7 @@ block activities
       h2.title-primary.mb-4 活動類別
       p 各種不同的活動內容
       p.mb-8 邀請您一同來共襄盛舉！
-    ul.d-flex.flex-wrap 
+    ul#cardView.d-flex.flex-wrap 
       +card-view("img/activity-01.jpg", "年度活動")
       +card-view("img/activity-02.jpg", "藝文活動")
       +card-view("img/activity-03.jpg", "節慶活動")

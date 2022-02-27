@@ -5,6 +5,16 @@ const type = {
   activity: ["年度活動", "藝文活動", "節慶活動", "其他"]
 }
 
+const ls = {
+  set: (name, value) => {
+    localStorage.setItem(name, value)
+  },
+  get: (name) => {
+    return localStorage.getItem(name) 
+  },
+  clear: () => localStorage.clear()
+}
+
 let allCityData = []
 let allAttractionData = []
 let allActivityData = []
@@ -62,7 +72,7 @@ function createPage(page) {
   changeBannerPicture(page)
   page == "activities"? renderTypes(type.activity) : renderTypes(type.attraction)
   page == "activities"? getActivityData() : getAttractionSpot()
-  searchBtn.href = page == "activities"? "activities.html" : "attractions.html"
+  searchBtn.href = page == "activities" ? "activities.html" : "attractions.html"
 }
 
 // 改變導覽列 class
@@ -79,8 +89,8 @@ function changeBannerPicture(path) {
 // 搜尋資料
 function searchData() {
   if (currentPage == "index") {
-    localStorage.setItem("type", selectedType)
-    localStorage.setItem("city", selectedCity)
+    ls.set("type", selectedType)
+    ls.set("city", selectedCity)
     location.pathname = `/Travel-Taiwan/public/attractions.html`
   }
   if (currentPage == "activities") {
@@ -222,10 +232,9 @@ function processingData(data) {
 
 // 篩選處理過的資料
 function filterData(data) {
-  if (localStorage.getItem("type") && localStorage.getItem("city")) {
-    selectedType = localStorage.getItem("type")
-    selectedCity = localStorage.getItem("city")
-    localStorage.clear()
+  if (ls.get("type") && ls.get("city")) {
+    selectedType = ls.get("type")
+    selectedCity = ls.get("city")
   }
   
   let filterData = []
@@ -380,7 +389,7 @@ function renderPagination(totalNum) {
   str += `<li><a href="#" data-add="1">&gt;</a></li>`
   pagination.innerHTML = str
   document.querySelector(`[data-num='${selectedPage}']`).classList.add("active")
-
+  ls.clear()
 }
 
 pagination.addEventListener("click", (e) => {
