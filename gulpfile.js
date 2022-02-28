@@ -1,9 +1,8 @@
 const gulp = require("gulp");
-// const autoprefixer = require("gulp-autoprefixer");
-// const sourcemaps = require("gulp-sourcemaps");
 const pug = require("gulp-pug");
 const babel = require('gulp-babel');
 const uglify = require("gulp-uglify");
+const imagemin = require("gulp-imagemin");
 const browserSync = require("browser-sync").create();
 
 gulp.task("pug", function () {
@@ -29,14 +28,23 @@ gulp.task("js", function () {
     .pipe(browserSync.stream())
 })
 
+gulp.task("imagemin", () => {
+  return gulp
+    .src("source/assets/img/*")
+    .pipe(imagemin())
+    .pipe(gulp.dest("public/img"))
+    .pipe(browserSync.stream());
+});
+
 gulp.task("watch", function () {
   browserSync.init({
     server: "./public"
   });
   gulp.watch("source/pug/**/*.pug", gulp.series("pug"));
   gulp.watch("source/js/**/*.js", gulp.series("js"))
+  gulp.watch("source/assets/img/*", gulp.series("imagemin"));
   gulp.watch("public/**/*.html").on("change", browserSync.reload);
 });
 
 
-gulp.task("default", gulp.series("pug", "js", "watch"));
+gulp.task("default", gulp.series("pug", "imagemin", "js", "watch"));
