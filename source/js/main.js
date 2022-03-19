@@ -59,9 +59,9 @@ function init() {
 // 偵測所在頁面路徑
 function detectPath() {
   const checkPage = path => {
-    if (path.includes("/index.html")) return "index"
     if (path.includes("/attractions.html")) return "attractions"
     if (path.includes("/activities.html")) return "activities"
+    return "index"
   }
   currentPage = checkPage(location.pathname)
   createPage(currentPage)
