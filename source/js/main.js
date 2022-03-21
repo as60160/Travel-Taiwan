@@ -475,7 +475,7 @@ function openModal(e, data) {
 
   modal.addEventListener("click", (e) => {
     e.preventDefault()
-    if (e.target.nodeName !== "A") return
+    if (e.target.id !== "closeBtn" && e.target.id !== "modal") return
     modal.classList.remove("active")
   })
 }
